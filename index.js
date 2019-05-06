@@ -18,7 +18,7 @@ function HTTPAmbientLight(log, config) {
     this.log = log;
     this.name = config.name;
     this.getUrl = config.getUrl;
-    this.lastRecord = { "light": 90 };
+    this.lastRecord = { "result": 90 };
     this.updateInterval = config.updateInterval || 0;
     this.updateInterval = this.updateInterval * 60 * 1000;
  
@@ -55,7 +55,7 @@ HTTPAmbientLight.prototype.getLux = function(callback) {
     request(this.getUrl, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             that.lastRecord = JSON.parse(body);
-            callback(null, that.lastRecord.light);
+            callback(null, that.lastRecord.result);
         }
     });
 };
